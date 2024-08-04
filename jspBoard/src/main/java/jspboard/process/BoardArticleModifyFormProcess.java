@@ -32,7 +32,16 @@ public class BoardArticleModifyFormProcess implements WebProcess{
 				rs.next();
 				board = new JspBoard(rs);
 				
-				request.setAttribute("board", board);
+				if (!board.getBoard_password()
+						.equals(request.getParameter("board_password"))) {
+					request.setAttribute("error_msg", "비밀번호가 틀립니다.");
+					
+					return "redirect:/article?board_id=" + board_id;
+				} else {
+					request.setAttribute("board", board);
+				}
+				
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -40,7 +49,7 @@ public class BoardArticleModifyFormProcess implements WebProcess{
 		
 		return "/board/modify";
 		
-		//return "redirect:/article?board_id=" + board_id;
+		
 	}
 
 }

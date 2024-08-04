@@ -20,22 +20,12 @@ public class BoardArticleModifyProcess implements WebProcess{
 		int board_id = Integer.parseInt(request.getParameter("board_id"));
 		String sql = "UPDATE jspboard SET board_title = ?, board_content= ? "
 				+ "WHERE board_id = ?";
-		String pw_sql = "SELECT board_password FROM jspboard WHERE board_id = ?";
 		
 		try (
 				Connection conn = hikari.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				PreparedStatement pw_pstmt = conn.prepareStatement(pw_sql);
 			) {
-			
-				pw_pstmt.setInt(1, board_id);
-				
-				try (ResultSet rs = pw_pstmt.executeQuery();) {
-					rs.next();
-					String pw = rs.getString("board_password");
-				}
-			
-				
+
 				pstmt.setString(1, request.getParameter("board_title"));
 				pstmt.setString(2, request.getParameter("board_content"));
 				pstmt.setInt(3, board_id);

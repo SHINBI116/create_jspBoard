@@ -32,10 +32,10 @@
 	</div>
 	
 	<div>
-	<form action="/comment" method="POST">
-		댓글작성자: <input type="text" name="comment_writer"/> <br>
-		비밀번호: <input type="password" name="comment_password"/> <br>
-		댓글: <textarea name="comment_content" cols="30" rows="3"></textarea> <br>
+	<form action="/comment" method="POST" id="comment_write_form">
+		댓글작성자: <input id="comment_writer" type="text" name="comment_writer"/> <br>
+		비밀번호: <input id="comment_password" type="password" name="comment_password"/> <br>
+		댓글: <textarea id="comment_content" name="comment_content" cols="30" rows="3"></textarea> <br>
 		<input type="hidden" name="board_id" value="${board.board_id }" />
 		<input type="hidden" name="total_comment" value="${total_comment}" />
 		<input type="submit" value="등록"/>
@@ -67,32 +67,7 @@
 		</c:forEach>
 	</ul>
 	
-	<script>
-	const deleteBtns = document.querySelectorAll(".delete-comments");
-	const checkForms = document.querySelectorAll(".comments-check");
-	const backBtns = document.querySelectorAll(".back-btns");
-	const submitBtns = document.querySelectorAll(".submit-btns");
-
-	// 삭제버튼: 비번입력창 나오게
-	deleteBtns.forEach(deleteBtn => {
-		deleteBtn.addEventListener('click', (e) => {
-		    const commentDiv = e.target.closest('.each-comment-update');
-		    const checkForm = commentDiv.querySelector('.comments-check');
-
-		     checkForm.style.visibility = 'visible';
-		 });
-	});
-	// 취소버튼 : 비번입력창 다시 visibility: hidden;
-	backBtns.forEach(backBtn => {
-		backBtn.addEventListener('click', (e) => {
-		    e.preventDefault(); // 폼 제출 방지
-		    const commentDiv = e.target.closest('.each-comment-update');
-		    const checkForm = commentDiv.querySelector('.comments-check');
-
-		     checkForm.style.visibility = 'hidden';
-		 });
-	});
-	</script>
+	<script src="resources/article.js"></script>
 	
 	
 </body>
