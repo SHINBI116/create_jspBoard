@@ -24,7 +24,7 @@ public class BoardListProcess implements WebProcess {
         ServletContext application = request.getServletContext();
         HikariConnector hikari = (HikariConnector) application.getAttribute("hikari");
         
-        String sql = "SELECT * FROM jspboard";
+        String sql = "SELECT * FROM jspboard ORDER BY board_id DESC";
         
         try (
         	Connection conn = hikari.getConnection();

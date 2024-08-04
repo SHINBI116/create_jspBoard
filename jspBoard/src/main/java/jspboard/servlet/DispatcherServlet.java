@@ -9,10 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jspboard.process.BoardAddBadProcess;
+import jspboard.process.BoardAddGoodProcess;
+import jspboard.process.BoardArticleDeleteProcess;
+import jspboard.process.BoardArticleModifyFormProcess;
+import jspboard.process.BoardArticleModifyProcess;
 import jspboard.process.BoardArticleProcess;
+import jspboard.process.BoardCommentDeleteProcess;
+import jspboard.process.BoardCommentInsertProcess;
 import jspboard.process.BoardInsertFormProcess;
 import jspboard.process.BoardInsertProcess;
 import jspboard.process.BoardListProcess;
+import jspboard.process.CheckPasswordProcess;
 import jspboard.process.NotfoundProcess;
 import jspboard.webprocess.WebProcess;
 
@@ -32,6 +40,20 @@ public class DispatcherServlet extends HttpServlet {
 		URI_MAPPING.put("GET:/insert", new BoardInsertFormProcess());
 		URI_MAPPING.put("POST:/insert", new BoardInsertProcess());
 		URI_MAPPING.put("GET:/article", new BoardArticleProcess());
+		URI_MAPPING.put("POST:/comment", new BoardCommentInsertProcess());
+		// 글삭제 -> 비번입력 -> 삭제프로세스
+		URI_MAPPING.put("GET:/check_delete", new CheckPasswordProcess());
+		URI_MAPPING.put("POST:/delete", new BoardArticleDeleteProcess());
+		// 댓글삭제
+		URI_MAPPING.put("POST:/delete_comment", new BoardCommentDeleteProcess());
+		// 수정 -> 비번 입력 -> 수정폼 -> 수정프로세스
+		URI_MAPPING.put("GET:/check_modify", new CheckPasswordProcess());
+		URI_MAPPING.put("POST:/modify_form", new BoardArticleModifyFormProcess());
+		URI_MAPPING.put("POST:/modify", new BoardArticleModifyProcess());
+		//추천
+		URI_MAPPING.put("GET:/good", new BoardAddGoodProcess());
+		//비추천
+		URI_MAPPING.put("GET:/bad", new BoardAddBadProcess());
 
 	}
 	
