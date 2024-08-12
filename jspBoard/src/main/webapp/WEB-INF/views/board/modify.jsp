@@ -30,6 +30,6 @@
 		</div>
 	</form>
 	
-	<script src="resources/modify_form.js"></script>
+	<script src="resources/js/modify_form.js"></script>
 </body>
 </html>

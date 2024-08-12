@@ -20,6 +20,7 @@ import jspboard.process.BoardCommentInsertProcess;
 import jspboard.process.BoardInsertFormProcess;
 import jspboard.process.BoardInsertProcess;
 import jspboard.process.BoardListProcess;
+import jspboard.process.BoardMainProcess;
 import jspboard.process.CheckPasswordProcess;
 import jspboard.process.NotfoundProcess;
 import jspboard.webprocess.WebProcess;
@@ -36,6 +37,7 @@ public class DispatcherServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		URI_MAPPING.put("GET:/notfound", new NotfoundProcess());
+		URI_MAPPING.put("GET:/main", new BoardMainProcess());
 		URI_MAPPING.put("GET:/list", new BoardListProcess());
 		URI_MAPPING.put("GET:/insert", new BoardInsertFormProcess());
 		URI_MAPPING.put("POST:/insert", new BoardInsertProcess());
